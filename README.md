@@ -21,6 +21,15 @@ Need to create a program that can automate the posting of a thread on Twitter. T
 - file .txt that contains the information to be stored in a sql azure database. It is located in a Blob Storage.
 - the file has 2 columns: id and json. The json column accepts a json, which contains all the information of the daily tweet to be posted.
 - schema of the json
+  - publication date
+  - module
+  - page
+  - topic
+  - first tweet
+  - long tweet
+- through Azure Data Factory the file is read and only the json column loaded on the Azure SQL Database
+- the table in Azure SQL consists of 2 fields: id, json, insertion date. There are calculated fields that unpack the json
+- fields of the table:
   - id
   - json
   - insertion date
@@ -30,9 +39,6 @@ Need to create a program that can automate the posting of a thread on Twitter. T
   - topic
   - first tweet
   - long tweet
-- through Azure Data Factory the file is read and only the json column loaded on the Azure SQL Database
-- the table in Azure SQL consists of 2 fields: id and json. There are calculated fields that unpack the json
-
 ## Python Program
 - log in on Twitter
 - capture first tweet and long tweet of a given day from the Azure SQL Database and divide it into n tweets (which must be each other's reply in order to be a thread)
